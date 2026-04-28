@@ -5,48 +5,64 @@ import { DashboardCharts } from "@/components/admin/DashboardCharts";
 
 interface LeadRow { id: string; nombre: string; email: string; estado: string }
 interface DemoRow { id: string; nombre: string; estado: string; producto: { nombre: string } }
+interface DiaRow { day: string; leads: number }
+interface EstadoRow { estado: string; count: number }
 interface Stats {
   totalLeads: number; leadsHoy: number; demosPendientes: number; productosActivos: number;
   ultimosLeads: LeadRow[]; ultimasDemos: DemoRow[];
-  leadsPorDia: { day: string; leads: number }[];
-  demosPorEstado: { estado: string; count: number }[];
+  leadsPorDia: DiaRow[]; demosPorEstado: EstadoRow[];
 }
 
 async function getStats(): Promise<Stats> {
   try {
+    const todayStart = new Date();
+    todayStart.setHours(0, 0, 0, 0);
+
     const sevenDaysAgo = new Date();
     sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 6);
     sevenDaysAgo.setHours(0, 0, 0, 0);
 
-    const [totalLeads, leadsHoy, demosPendientes, productosActivos, ultimosLeads, ultimasDemos, leadsRecientes, demosPorEstadoRaw] = await Promise.all([
-      prisma.lead.count(),
-      prisma.lead.count({ where: { creadoEn: { gte: new Date(new Date().setHours(0, 0, 0, 0)) } } }),
-      prisma.solicitudDemo.count({ where: { estado: "pendiente" } }),
-      prisma.producto.count({ where: { activo: true } }),
-      prisma.lead.findMany({ orderBy: { creadoEn: "desc" }, take: 5, select: { id: true, nombre: true, email: true, estado: true } }),
-      prisma.solicitudDemo.findMany({ orderBy: { creadoEn: "desc" }, take: 5, select: { id: true, nombre: true, estado: true, producto: { select: { nombre: true } } } }),
-      prisma.lead.findMany({ where: { creadoEn: { gte: sevenDaysAgo } }, select: { creadoEn: true } }),
-      prisma.solicitudDemo.groupBy({ by: ["estado"], _count: { estado: true } }),
-    ]);
+    const totalLeads = await prisma.lead.count();
+    const leadsHoy = await prisma.lead.count({ where: { creadoEn: { gte: todayStart } } });
+    const demosPendientes = await prisma.solicitudDemo.count({ where: { estado: "pendiente" } });
+    const productosActivos = await prisma.producto.count({ where: { activo: true } });
 
-    const recientes = leadsRecientes as { creadoEn: Date }[];
-    const days: { day: string; leads: number }[] = [];
+    const ultimosLeads: LeadRow[] = await prisma.lead.findMany({
+      orderBy: { creadoEn: "desc" },
+      take: 5,
+      select: { id: true, nombre: true, email: true, estado: true },
+    });
+
+    const ultimasDemos: DemoRow[] = await prisma.solicitudDemo.findMany({
+      orderBy: { creadoEn: "desc" },
+      take: 5,
+      select: { id: true, nombre: true, estado: true, producto: { select: { nombre: true } } },
+    });
+
+    const leadsRecientes: { creadoEn: Date }[] = await prisma.lead.findMany({
+      where: { creadoEn: { gte: sevenDaysAgo } },
+      select: { creadoEn: true },
+    });
+
+    const demosPorEstadoRaw: { estado: string; _count: { estado: number } }[] =
+      await prisma.solicitudDemo.groupBy({ by: ["estado"], _count: { estado: true } });
+
+    const leadsPorDia: DiaRow[] = [];
     for (let i = 6; i >= 0; i--) {
       const d = new Date();
       d.setDate(d.getDate() - i);
       d.setHours(0, 0, 0, 0);
       const next = new Date(d);
       next.setDate(next.getDate() + 1);
-      days.push({
+      leadsPorDia.push({
         day: d.toLocaleDateString("es-CL", { weekday: "short", day: "numeric" }),
-        leads: recientes.filter(l => l.creadoEn >= d && l.creadoEn < next).length,
+        leads: leadsRecientes.filter(l => l.creadoEn >= d && l.creadoEn < next).length,
       });
     }
 
-    const demosRaw = demosPorEstadoRaw as { estado: string; _count: { estado: number } }[];
-    const demosPorEstado = demosRaw.map(d => ({ estado: d.estado, count: d._count.estado }));
+    const demosPorEstado: EstadoRow[] = demosPorEstadoRaw.map(d => ({ estado: d.estado, count: d._count.estado }));
 
-    return { totalLeads, leadsHoy, demosPendientes, productosActivos, ultimosLeads, ultimasDemos, leadsPorDia: days, demosPorEstado };
+    return { totalLeads, leadsHoy, demosPendientes, productosActivos, ultimosLeads, ultimasDemos, leadsPorDia, demosPorEstado };
   } catch {
     return { totalLeads: 0, leadsHoy: 0, demosPendientes: 0, productosActivos: 0, ultimosLeads: [], ultimasDemos: [], leadsPorDia: [], demosPorEstado: [] };
   }
