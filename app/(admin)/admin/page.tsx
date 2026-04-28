@@ -3,7 +3,16 @@ import { prisma } from "@/lib/prisma";
 import { Inbox, CalendarCheck, Package, TrendingUp } from "lucide-react";
 import { DashboardCharts } from "@/components/admin/DashboardCharts";
 
-async function getStats() {
+interface LeadRow { id: string; nombre: string; email: string; estado: string }
+interface DemoRow { id: string; nombre: string; estado: string; producto: { nombre: string } }
+interface Stats {
+  totalLeads: number; leadsHoy: number; demosPendientes: number; productosActivos: number;
+  ultimosLeads: LeadRow[]; ultimasDemos: DemoRow[];
+  leadsPorDia: { day: string; leads: number }[];
+  demosPorEstado: { estado: string; count: number }[];
+}
+
+async function getStats(): Promise<Stats> {
   try {
     const sevenDaysAgo = new Date();
     sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 6);
@@ -14,13 +23,12 @@ async function getStats() {
       prisma.lead.count({ where: { creadoEn: { gte: new Date(new Date().setHours(0, 0, 0, 0)) } } }),
       prisma.solicitudDemo.count({ where: { estado: "pendiente" } }),
       prisma.producto.count({ where: { activo: true } }),
-      prisma.lead.findMany({ orderBy: { creadoEn: "desc" }, take: 5 }),
-      prisma.solicitudDemo.findMany({ orderBy: { creadoEn: "desc" }, take: 5, include: { producto: { select: { nombre: true } } } }),
+      prisma.lead.findMany({ orderBy: { creadoEn: "desc" }, take: 5, select: { id: true, nombre: true, email: true, estado: true } }),
+      prisma.solicitudDemo.findMany({ orderBy: { creadoEn: "desc" }, take: 5, select: { id: true, nombre: true, estado: true, producto: { select: { nombre: true } } } }),
       prisma.lead.findMany({ where: { creadoEn: { gte: sevenDaysAgo } }, select: { creadoEn: true } }),
       prisma.solicitudDemo.groupBy({ by: ["estado"], _count: { estado: true } }),
     ]);
 
-    // Build 7-day array
     const days: { day: string; leads: number }[] = [];
     for (let i = 6; i >= 0; i--) {
       const d = new Date();
@@ -30,11 +38,11 @@ async function getStats() {
       next.setDate(next.getDate() + 1);
       days.push({
         day: d.toLocaleDateString("es-CL", { weekday: "short", day: "numeric" }),
-        leads: leadsRecientes.filter((l: { creadoEn: Date }) => l.creadoEn >= d && l.creadoEn < next).length,
+        leads: leadsRecientes.filter(l => l.creadoEn >= d && l.creadoEn < next).length,
       });
     }
 
-    const demosPorEstado = demosPorEstadoRaw.map((d: { estado: string; _count: { estado: number } }) => ({ estado: d.estado, count: d._count.estado }));
+    const demosPorEstado = demosPorEstadoRaw.map(d => ({ estado: d.estado, count: d._count.estado }));
 
     return { totalLeads, leadsHoy, demosPendientes, productosActivos, ultimosLeads, ultimasDemos, leadsPorDia: days, demosPorEstado };
   } catch {
@@ -66,7 +74,6 @@ export default async function DashboardPage() {
         <p className="text-sm text-muted-foreground mt-1">Resumen general de actividad</p>
       </div>
 
-      {/* Stat cards */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {cards.map((c) => (
           <div key={c.label} className="rounded-xl border border-border bg-card p-5">
@@ -79,11 +86,9 @@ export default async function DashboardPage() {
         ))}
       </div>
 
-      {/* Charts */}
       <DashboardCharts leadsPorDia={stats.leadsPorDia} demosPorEstado={stats.demosPorEstado} />
 
       <div className="grid lg:grid-cols-2 gap-5">
-        {/* Últimos leads */}
         <div className="rounded-xl border border-border bg-card p-5">
           <h2 className="text-sm font-semibold mb-4">Últimos leads</h2>
           {stats.ultimosLeads.length === 0 ? (
@@ -105,7 +110,6 @@ export default async function DashboardPage() {
           )}
         </div>
 
-        {/* Últimas demos */}
         <div className="rounded-xl border border-border bg-card p-5">
           <h2 className="text-sm font-semibold mb-4">Últimas demos solicitadas</h2>
           {stats.ultimasDemos.length === 0 ? (
