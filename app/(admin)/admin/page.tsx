@@ -30,7 +30,7 @@ async function getStats() {
       next.setDate(next.getDate() + 1);
       days.push({
         day: d.toLocaleDateString("es-CL", { weekday: "short", day: "numeric" }),
-        leads: leadsRecientes.filter(l => l.creadoEn >= d && l.creadoEn < next).length,
+        leads: leadsRecientes.filter((l: { creadoEn: Date }) => l.creadoEn >= d && l.creadoEn < next).length,
       });
     }
 
