@@ -5,7 +5,7 @@ import { prisma } from "@/lib/prisma";
 
 export async function GET() {
   const config = await prisma.configSitio.findMany({ orderBy: { clave: "asc" } });
-  const map = Object.fromEntries(config.map(c => [c.clave, c.valor]));
+  const map = Object.fromEntries(config.map((c: { clave: string; valor: string }) => [c.clave, c.valor]));
   return NextResponse.json(map);
 }
 
