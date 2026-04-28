@@ -34,7 +34,7 @@ async function getStats() {
       });
     }
 
-    const demosPorEstado = demosPorEstadoRaw.map(d => ({ estado: d.estado, count: d._count.estado }));
+    const demosPorEstado = demosPorEstadoRaw.map((d: { estado: string; _count: { estado: number } }) => ({ estado: d.estado, count: d._count.estado }));
 
     return { totalLeads, leadsHoy, demosPendientes, productosActivos, ultimosLeads, ultimasDemos, leadsPorDia: days, demosPorEstado };
   } catch {
