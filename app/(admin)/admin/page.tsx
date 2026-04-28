@@ -43,7 +43,8 @@ async function getStats(): Promise<Stats> {
       });
     }
 
-    const demosPorEstado = demosPorEstadoRaw.map(d => ({ estado: d.estado, count: d._count.estado }));
+    const demosRaw = demosPorEstadoRaw as { estado: string; _count: { estado: number } }[];
+    const demosPorEstado = demosRaw.map(d => ({ estado: d.estado, count: d._count.estado }));
 
     return { totalLeads, leadsHoy, demosPendientes, productosActivos, ultimosLeads, ultimasDemos, leadsPorDia: days, demosPorEstado };
   } catch {
