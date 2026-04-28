@@ -9,7 +9,6 @@ import { Testimonios } from "@/components/public/Testimonios";
 import { Blog } from "@/components/public/Blog";
 import { Contacto } from "@/components/public/Contacto";
 import { prisma } from "@/lib/prisma";
-import type { Producto, Integrante, Testimonio, Articulo } from "@prisma/client";
 
 export const dynamic = "force-dynamic";
 
