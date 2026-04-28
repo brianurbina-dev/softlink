@@ -44,8 +44,7 @@ async function getStats(): Promise<Stats> {
       select: { creadoEn: true },
     });
 
-    const demosPorEstadoRaw: { estado: string; _count: { estado: number } }[] =
-      await prisma.solicitudDemo.groupBy({ by: ["estado"], _count: { estado: true } });
+    const demosPorEstadoRaw = await prisma.solicitudDemo.groupBy({ by: ["estado"], _count: { estado: true } });
 
     const leadsPorDia: DiaRow[] = [];
     for (let i = 6; i >= 0; i--) {
@@ -60,7 +59,7 @@ async function getStats(): Promise<Stats> {
       });
     }
 
-    const demosPorEstado: EstadoRow[] = demosPorEstadoRaw.map(d => ({ estado: d.estado, count: d._count.estado }));
+    const demosPorEstado: EstadoRow[] = demosPorEstadoRaw.map((d: { estado: string; _count: { estado: number } }) => ({ estado: d.estado, count: d._count.estado }));
 
     return { totalLeads, leadsHoy, demosPendientes, productosActivos, ultimosLeads, ultimasDemos, leadsPorDia, demosPorEstado };
   } catch {
