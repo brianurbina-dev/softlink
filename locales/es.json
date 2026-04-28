@@ -1,0 +1,181 @@
+{
+  "nav": {
+    "products": "Productos",
+    "team": "Equipo",
+    "pricing": "Precios",
+    "blog": "Blog",
+    "contact": "Contacto",
+    "requestDemo": "Solicitar Demo"
+  },
+  "hero": {
+    "badge": "Empresa de desarrollo de software — Chile",
+    "h1a": "Soluciones digitales que",
+    "h1Highlight": "resuelven",
+    "h1b": "lo que importa",
+    "subtitle": "Más que tecnología, un compromiso contigo. Construimos software SaaS para PYMEs chilenas que impulsa su crecimiento real.",
+    "cta1": "Ver productos",
+    "cta2": "Ver demo",
+    "socialProof": "+10 proyectos entregados con 100% satisfacción"
+  },
+  "stats": {
+    "projects": "Proyectos entregados",
+    "engineers": "Ingenieros fundadores",
+    "satisfaction": "Satisfacción de clientes",
+    "products": "Productos SaaS"
+  },
+  "catalog": {
+    "label": "Catálogo",
+    "title": "Nuestros productos",
+    "subtitle": "Software SaaS diseñado para las necesidades reales de las PYMEs chilenas.",
+    "available": "Disponible",
+    "inDevelopment": "En desarrollo",
+    "comingSoon": "Próximamente",
+    "viewProduct": "Ver producto",
+    "notifyMe": "Notificarme →"
+  },
+  "team": {
+    "label": "Equipo",
+    "title": "Las personas detrás de Softlink",
+    "subtitle": "Una empresa familiar fundada por dos ingenieros con una misión: hacer que la tecnología de calidad sea accesible para las PYMEs chilenas."
+  },
+  "pricing": {
+    "label": "Precios",
+    "title": "Planes para cada etapa",
+    "subtitle": "Precios en pesos chilenos. Sin costos ocultos ni sorpresas.",
+    "monthly": "Mensual",
+    "annual": "Anual",
+    "popular": "Popular",
+    "perMonth": "/mes",
+    "savePerYear": "Ahorras ${amount} al año",
+    "footer": "Todos los precios incluyen IVA · Cancela cuando quieras · Soporte en español",
+    "basic": {
+      "name": "Básico",
+      "description": "Para negocios que recién empiezan su transformación digital.",
+      "cta": "Comenzar gratis",
+      "f1": "1 usuario",
+      "f2": "Hasta 100 transacciones/mes",
+      "f3": "Reportes básicos",
+      "f4": "Soporte por email",
+      "f5": "API access",
+      "f6": "Usuarios ilimitados",
+      "f7": "Soporte prioritario"
+    },
+    "pro": {
+      "name": "Profesional",
+      "description": "El más elegido por PYMEs en crecimiento activo.",
+      "cta": "Empezar ahora",
+      "f1": "5 usuarios",
+      "f2": "Transacciones ilimitadas",
+      "f3": "Reportes avanzados + exportación",
+      "f4": "Soporte prioritario 24/7",
+      "f5": "API access",
+      "f6": "Usuarios ilimitados",
+      "f7": "Onboarding personalizado"
+    },
+    "enterprise": {
+      "name": "Empresarial",
+      "description": "Para empresas con necesidades avanzadas y equipos grandes.",
+      "cta": "Contactar ventas",
+      "f1": "Usuarios ilimitados",
+      "f2": "Transacciones ilimitadas",
+      "f3": "Reportes avanzados + exportación",
+      "f4": "Soporte dedicado 24/7",
+      "f5": "API access + webhooks",
+      "f6": "Onboarding personalizado",
+      "f7": "SLA garantizado"
+    }
+  },
+  "testimonials": {
+    "label": "Testimonios",
+    "title": "Lo que dicen nuestros clientes"
+  },
+  "blog": {
+    "label": "Blog",
+    "title": "Últimos artículos",
+    "viewAll": "Ver todos",
+    "readMore": "Leer más",
+    "pageSubtitle": "Artículos sobre tecnología, software y negocios digitales para PYMEs.",
+    "backToBlog": "← Volver al blog",
+    "relatedTitle": "Más artículos",
+    "ctaTitle": "¿Te gustó este artículo?",
+    "ctaText": "Cuéntanos sobre tu proyecto y exploramos cómo podemos ayudarte.",
+    "ctaButton": "Hablar con el equipo"
+  },
+  "contact": {
+    "label": "Contacto",
+    "title": "Hablemos de tu proyecto",
+    "subtitle": "Cuéntanos qué necesita tu negocio. Respondemos en menos de 24 horas hábiles y sin compromiso.",
+    "emailLabel": "Email",
+    "locationLabel": "Ubicación",
+    "locationValue": "Santiago, Chile",
+    "whatsappLabel": "WhatsApp",
+    "nameLabel": "Nombre",
+    "namePlaceholder": "Tu nombre",
+    "emailPlaceholder": "tu@email.cl",
+    "companyLabel": "Empresa",
+    "companyPlaceholder": "Nombre de tu empresa (opcional)",
+    "messageLabel": "Mensaje",
+    "messagePlaceholder": "Cuéntanos sobre tu proyecto o consulta...",
+    "sendButton": "Enviar mensaje",
+    "sendingButton": "Enviando...",
+    "responseTime": "Respondemos en menos de 24 horas hábiles",
+    "successTitle": "¡Mensaje recibido!",
+    "successText": "Gracias por contactarnos. Te responderemos a la brevedad.",
+    "sendAnother": "Enviar otro mensaje",
+    "nameError": "Mínimo 2 caracteres",
+    "emailError": "Email inválido",
+    "messageError": "El mensaje debe tener al menos 10 caracteres"
+  },
+  "footer": {
+    "tagline": "Más que tecnología, un compromiso contigo.",
+    "productsCol": "Productos",
+    "catalogLink": "Catálogo",
+    "pricingLink": "Precios",
+    "companyCol": "Empresa",
+    "teamLink": "Equipo",
+    "blogLink": "Blog",
+    "contactLink": "Contacto",
+    "privacy": "Privacidad",
+    "terms": "Términos"
+  },
+  "demo": {
+    "title": "Solicitar demo",
+    "nameLabel": "Nombre",
+    "emailLabel": "Email",
+    "companyLabel": "Empresa",
+    "phoneLabel": "Teléfono",
+    "messageLabel": "Mensaje",
+    "namePlaceholder": "Tu nombre",
+    "emailPlaceholder": "tu@email.cl",
+    "companyPlaceholder": "Nombre de la empresa",
+    "phonePlaceholder": "+56 9 XXXX XXXX",
+    "messagePlaceholder": "Cuéntanos sobre tu caso de uso o consulta...",
+    "submitButton": "Solicitar demo de {name}",
+    "submittingButton": "Enviando...",
+    "disclaimer": "Respondemos en menos de 24 horas hábiles · Sin compromiso",
+    "successTitle": "¡Solicitud enviada!",
+    "successText": "Uno de nuestros ingenieros te contactará en las próximas horas hábiles para coordinar la sesión.",
+    "closeButton": "Cerrar",
+    "defaultLabel": "Solicitar demo",
+    "freeLabel": "Solicitar demo gratuita",
+    "notifyLabel": "Notificarme cuando esté disponible",
+    "nameError": "Mínimo 2 caracteres",
+    "emailError": "Email inválido"
+  },
+  "productPage": {
+    "backLink": "Ver todos los productos",
+    "featured": "Destacado",
+    "aboutTitle": "Acerca de {name}",
+    "screenshotsTitle": "Capturas de pantalla",
+    "ctaAvailableTitle": "¿Listo para empezar con {name}?",
+    "ctaUnavailableTitle": "¿Te interesa {name}?",
+    "ctaAvailableText": "Contáctanos hoy y te hacemos una demo personalizada sin compromiso.",
+    "ctaUnavailableText": "Déjanos tus datos y te avisamos en cuanto esté disponible."
+  },
+  "notFound": {
+    "title": "Página no encontrada",
+    "text": "La página que buscas no existe o fue movida. Vuelve al inicio o explora nuestros productos.",
+    "backHome": "Volver al inicio",
+    "viewProducts": "Ver productos"
+  }
+}

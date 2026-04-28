@@ -1,0 +1,181 @@
+{
+  "nav": {
+    "products": "Products",
+    "team": "Team",
+    "pricing": "Pricing",
+    "blog": "Blog",
+    "contact": "Contact",
+    "requestDemo": "Request Demo"
+  },
+  "hero": {
+    "badge": "Software development company — Chile",
+    "h1a": "Digital solutions that",
+    "h1Highlight": "solve",
+    "h1b": "what matters",
+    "subtitle": "More than technology, a commitment to you. We build SaaS software for Chilean SMEs that drives real growth.",
+    "cta1": "View products",
+    "cta2": "View demo",
+    "socialProof": "+10 projects delivered with 100% satisfaction"
+  },
+  "stats": {
+    "projects": "Projects delivered",
+    "engineers": "Founding engineers",
+    "satisfaction": "Customer satisfaction",
+    "products": "SaaS products"
+  },
+  "catalog": {
+    "label": "Catalog",
+    "title": "Our products",
+    "subtitle": "SaaS software designed for the real needs of Chilean SMEs.",
+    "available": "Available",
+    "inDevelopment": "In development",
+    "comingSoon": "Coming soon",
+    "viewProduct": "View product",
+    "notifyMe": "Notify me →"
+  },
+  "team": {
+    "label": "Team",
+    "title": "The people behind Softlink",
+    "subtitle": "A family company founded by two engineers on a mission: making quality technology accessible to Chilean SMEs."
+  },
+  "pricing": {
+    "label": "Pricing",
+    "title": "Plans for every stage",
+    "subtitle": "Prices in Chilean pesos. No hidden fees or surprises.",
+    "monthly": "Monthly",
+    "annual": "Annual",
+    "popular": "Popular",
+    "perMonth": "/mo",
+    "savePerYear": "Save ${amount} per year",
+    "footer": "All prices include tax · Cancel anytime · Spanish support",
+    "basic": {
+      "name": "Basic",
+      "description": "For businesses just starting their digital transformation.",
+      "cta": "Start free",
+      "f1": "1 user",
+      "f2": "Up to 100 transactions/mo",
+      "f3": "Basic reports",
+      "f4": "Email support",
+      "f5": "API access",
+      "f6": "Unlimited users",
+      "f7": "Priority support"
+    },
+    "pro": {
+      "name": "Professional",
+      "description": "The most chosen by actively growing SMEs.",
+      "cta": "Get started",
+      "f1": "5 users",
+      "f2": "Unlimited transactions",
+      "f3": "Advanced reports + export",
+      "f4": "Priority support 24/7",
+      "f5": "API access",
+      "f6": "Unlimited users",
+      "f7": "Personalized onboarding"
+    },
+    "enterprise": {
+      "name": "Enterprise",
+      "description": "For companies with advanced needs and large teams.",
+      "cta": "Contact sales",
+      "f1": "Unlimited users",
+      "f2": "Unlimited transactions",
+      "f3": "Advanced reports + export",
+      "f4": "Dedicated support 24/7",
+      "f5": "API access + webhooks",
+      "f6": "Personalized onboarding",
+      "f7": "Guaranteed SLA"
+    }
+  },
+  "testimonials": {
+    "label": "Testimonials",
+    "title": "What our clients say"
+  },
+  "blog": {
+    "label": "Blog",
+    "title": "Latest articles",
+    "viewAll": "View all",
+    "readMore": "Read more",
+    "pageSubtitle": "Articles about technology, software and digital business for SMEs.",
+    "backToBlog": "← Back to blog",
+    "relatedTitle": "More articles",
+    "ctaTitle": "Did you enjoy this article?",
+    "ctaText": "Tell us about your project and we'll explore how we can help you.",
+    "ctaButton": "Talk to the team"
+  },
+  "contact": {
+    "label": "Contact",
+    "title": "Let's talk about your project",
+    "subtitle": "Tell us what your business needs. We respond in less than 24 business hours with no commitment.",
+    "emailLabel": "Email",
+    "locationLabel": "Location",
+    "locationValue": "Santiago, Chile",
+    "whatsappLabel": "WhatsApp",
+    "nameLabel": "Name",
+    "namePlaceholder": "Your name",
+    "emailPlaceholder": "you@email.com",
+    "companyLabel": "Company",
+    "companyPlaceholder": "Your company name (optional)",
+    "messageLabel": "Message",
+    "messagePlaceholder": "Tell us about your project or question...",
+    "sendButton": "Send message",
+    "sendingButton": "Sending...",
+    "responseTime": "We respond in less than 24 business hours",
+    "successTitle": "Message received!",
+    "successText": "Thanks for reaching out. We'll get back to you shortly.",
+    "sendAnother": "Send another message",
+    "nameError": "At least 2 characters",
+    "emailError": "Invalid email",
+    "messageError": "Message must be at least 10 characters"
+  },
+  "footer": {
+    "tagline": "More than technology, a commitment to you.",
+    "productsCol": "Products",
+    "catalogLink": "Catalog",
+    "pricingLink": "Pricing",
+    "companyCol": "Company",
+    "teamLink": "Team",
+    "blogLink": "Blog",
+    "contactLink": "Contact",
+    "privacy": "Privacy",
+    "terms": "Terms"
+  },
+  "demo": {
+    "title": "Request demo",
+    "nameLabel": "Name",
+    "emailLabel": "Email",
+    "companyLabel": "Company",
+    "phoneLabel": "Phone",
+    "messageLabel": "Message",
+    "namePlaceholder": "Your name",
+    "emailPlaceholder": "you@email.com",
+    "companyPlaceholder": "Company name",
+    "phonePlaceholder": "+1 555 XXX XXXX",
+    "messagePlaceholder": "Tell us about your use case or question...",
+    "submitButton": "Request {name} demo",
+    "submittingButton": "Sending...",
+    "disclaimer": "We respond in less than 24 business hours · No commitment",
+    "successTitle": "Request sent!",
+    "successText": "One of our engineers will contact you within the next business hours to schedule the session.",
+    "closeButton": "Close",
+    "defaultLabel": "Request demo",
+    "freeLabel": "Request free demo",
+    "notifyLabel": "Notify me when available",
+    "nameError": "At least 2 characters",
+    "emailError": "Invalid email"
+  },
+  "productPage": {
+    "backLink": "View all products",
+    "featured": "Featured",
+    "aboutTitle": "About {name}",
+    "screenshotsTitle": "Screenshots",
+    "ctaAvailableTitle": "Ready to get started with {name}?",
+    "ctaUnavailableTitle": "Interested in {name}?",
+    "ctaAvailableText": "Contact us today and we'll give you a personalized demo with no commitment.",
+    "ctaUnavailableText": "Leave us your details and we'll notify you as soon as it's available."
+  },
+  "notFound": {
+    "title": "Page not found",
+    "text": "The page you're looking for doesn't exist or has been moved. Go back home or explore our products.",
+    "backHome": "Back to home",
+    "viewProducts": "View products"
+  }
+}

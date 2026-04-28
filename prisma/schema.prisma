@@ -1,0 +1,153 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Usuario {
+  id       String    @id @default(cuid())
+  email    String    @unique
+  nombre   String
+  password String
+  rol      Rol       @default(viewer)
+  activo   Boolean   @default(true)
+  creadoEn DateTime  @default(now())
+  sessions Session[]
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  usuario      Usuario  @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+enum Rol {
+  super_admin
+  editor
+  comercial
+  viewer
+}
+
+model Integrante {
+  id            String   @id @default(cuid())
+  nombre        String
+  cargo         String
+  cargoEn       String?
+  descripcion   String
+  descripcionEn String?
+  foto          String?
+  linkedin      String?
+  github        String?
+  orden         Int      @default(0)
+  activo        Boolean  @default(true)
+  creadoEn      DateTime @default(now())
+}
+
+model Producto {
+  id                  String          @id @default(cuid())
+  slug                String          @unique
+  nombre              String
+  descripcion         String
+  descripcionEn       String?
+  descripcionLarga    String?
+  descripcionLargaEn  String?
+  imagen              String?
+  screenshots      String[]
+  estado           EstadoProducto  @default(proximamente)
+  demoUrl          String?
+  precio           Float?
+  tipoPrecio       String?
+  tecnologias      String[]
+  destacado        Boolean         @default(false)
+  activo           Boolean         @default(true)
+  creadoEn         DateTime        @default(now())
+  demos            SolicitudDemo[]
+}
+
+enum EstadoProducto {
+  disponible
+  proximamente
+  en_desarrollo
+}
+
+model Testimonio {
+  id        String   @id @default(cuid())
+  nombre    String
+  cargo     String
+  cargoEn   String?
+  empresa   String
+  foto      String?
+  texto     String
+  textoEn   String?
+  estrellas Int      @default(5)
+  activo    Boolean  @default(true)
+  orden     Int      @default(0)
+  creadoEn  DateTime @default(now())
+}
+
+model Lead {
+  id        String     @id @default(cuid())
+  nombre    String
+  email     String
+  empresa   String?
+  mensaje   String
+  estado    EstadoLead @default(nuevo)
+  notas     String?
+  creadoEn  DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
+
+enum EstadoLead {
+  nuevo
+  en_contacto
+  cerrado
+  descartado
+}
+
+model SolicitudDemo {
+  id         String     @id @default(cuid())
+  nombre     String
+  email      String
+  empresa    String?
+  telefono   String?
+  mensaje    String?
+  productoId String
+  producto   Producto   @relation(fields: [productoId], references: [id])
+  estado     EstadoDemo @default(pendiente)
+  creadoEn   DateTime   @default(now())
+}
+
+enum EstadoDemo {
+  pendiente
+  confirmada
+  rechazada
+  realizada
+}
+
+model Articulo {
+  id          String    @id @default(cuid())
+  slug        String    @unique
+  titulo      String
+  tituloEn    String?
+  resumen     String
+  resumenEn   String?
+  contenido   String
+  contenidoEn String?
+  imagen      String?
+  tags        String[]
+  publicado   Boolean   @default(false)
+  publicadoEn DateTime?
+  creadoEn    DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model ConfigSitio {
+  id        String   @id @default(cuid())
+  clave     String   @unique
+  valor     String
+  updatedAt DateTime @updatedAt
+}
