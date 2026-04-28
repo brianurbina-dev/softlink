@@ -25,7 +25,7 @@ async function getStats(): Promise<Stats> {
       prisma.producto.count({ where: { activo: true } }),
       prisma.lead.findMany({ orderBy: { creadoEn: "desc" }, take: 5, select: { id: true, nombre: true, email: true, estado: true } }),
       prisma.solicitudDemo.findMany({ orderBy: { creadoEn: "desc" }, take: 5, select: { id: true, nombre: true, estado: true, producto: { select: { nombre: true } } } }),
-      prisma.lead.findMany({ where: { creadoEn: { gte: sevenDaysAgo } }, select: { creadoEn: true } }),
+      prisma.lead.findMany({ where: { creadoEn: { gte: sevenDaysAgo } }, select: { creadoEn: true } }) as Promise<{ creadoEn: Date }[]>,
       prisma.solicitudDemo.groupBy({ by: ["estado"], _count: { estado: true } }),
     ]);
 
