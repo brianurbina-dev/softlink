@@ -25,10 +25,11 @@ async function getStats(): Promise<Stats> {
       prisma.producto.count({ where: { activo: true } }),
       prisma.lead.findMany({ orderBy: { creadoEn: "desc" }, take: 5, select: { id: true, nombre: true, email: true, estado: true } }),
       prisma.solicitudDemo.findMany({ orderBy: { creadoEn: "desc" }, take: 5, select: { id: true, nombre: true, estado: true, producto: { select: { nombre: true } } } }),
-      prisma.lead.findMany({ where: { creadoEn: { gte: sevenDaysAgo } }, select: { creadoEn: true } }) as Promise<{ creadoEn: Date }[]>,
+      prisma.lead.findMany({ where: { creadoEn: { gte: sevenDaysAgo } }, select: { creadoEn: true } }),
       prisma.solicitudDemo.groupBy({ by: ["estado"], _count: { estado: true } }),
     ]);
 
+    const recientes = leadsRecientes as { creadoEn: Date }[];
     const days: { day: string; leads: number }[] = [];
     for (let i = 6; i >= 0; i--) {
       const d = new Date();
@@ -38,7 +39,7 @@ async function getStats(): Promise<Stats> {
       next.setDate(next.getDate() + 1);
       days.push({
         day: d.toLocaleDateString("es-CL", { weekday: "short", day: "numeric" }),
-        leads: leadsRecientes.filter(l => l.creadoEn >= d && l.creadoEn < next).length,
+        leads: recientes.filter(l => l.creadoEn >= d && l.creadoEn < next).length,
       });
     }
 
