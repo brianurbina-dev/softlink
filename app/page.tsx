@@ -9,14 +9,15 @@ import { Testimonios } from "@/components/public/Testimonios";
 import { Blog } from "@/components/public/Blog";
 import { Contacto } from "@/components/public/Contacto";
 import { prisma } from "@/lib/prisma";
+import type { Producto, Integrante, Testimonio, Articulo } from "@prisma/client";
 
 export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
-  const productosRaw = await prisma.producto.findMany({ where: { activo: true }, orderBy: { creadoEn: "asc" } });
-  const integrantesRaw = await prisma.integrante.findMany({ where: { activo: true }, orderBy: { orden: "asc" } });
-  const testimoniosRaw = await prisma.testimonio.findMany({ where: { activo: true }, orderBy: { orden: "asc" } });
-  const articulosRaw = await prisma.articulo.findMany({ where: { publicado: true }, orderBy: { publicadoEn: "desc" }, take: 3 });
+  const productosRaw: Producto[] = await prisma.producto.findMany({ where: { activo: true }, orderBy: { creadoEn: "asc" } });
+  const integrantesRaw: Integrante[] = await prisma.integrante.findMany({ where: { activo: true }, orderBy: { orden: "asc" } });
+  const testimoniosRaw: Testimonio[] = await prisma.testimonio.findMany({ where: { activo: true }, orderBy: { orden: "asc" } });
+  const articulosRaw: Articulo[] = await prisma.articulo.findMany({ where: { publicado: true }, orderBy: { publicadoEn: "desc" }, take: 3 });
 
   const productos = productosRaw.map(p => ({ ...p, creadoEn: p.creadoEn.toISOString() }));
   const integrantes = integrantesRaw.map(i => ({ ...i, creadoEn: i.creadoEn.toISOString() }));
